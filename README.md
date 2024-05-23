@@ -29,13 +29,13 @@ Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
         at org.example.App.main(App.java:37)
 ```
 
+## Notes
+
 It's useful to set `-XX:+HeapDumpOnOutOfMemoryError`; upon examination, the dump will show that the majority of the heap
 is taken up by reclaimable soft references.
 
 The `-XX:GCLockerRetryAllocationCount` _may_ be set to a high number to workaround this issue, although that it isn't a
 very satisfying solution.
-
-## Notes
 
 It appears that the ZGC collector is not prone to this error condition.
 Probably because it had already been noticed and fixed in [JDK-8289838 ZGC: OOM before clearing all SoftReferences](https://bugs.openjdk.org/browse/JDK-8289838)?
