@@ -32,6 +32,9 @@ Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
 It's useful to set `-XX:+HeapDumpOnOutOfMemoryError`; upon examination, the dump will show that the majority of the heap
 is taken up by reclaimable soft references.
 
+The `-XX:GCLockerRetryAllocationCount` _may_ be set to a high number to workaround this issue, although that it isn't a
+very satisfying solution.
+
 ## References
 
 * https://shipilev.net/jvm/anatomy-quarks/9-jni-critical-gclocker/
