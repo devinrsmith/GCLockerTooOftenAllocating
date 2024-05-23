@@ -7,8 +7,9 @@ import java.util.zip.Deflater;
 
 /**
  * This is meant to be a small reproduction of the error "Retried waiting for GCLocker too often allocating". In
- * combination with {@link SoftReference}, this seems to break it's JavaDoc contract: "All soft references to
- * softly-reachable objects are guaranteed to have been cleared before the virtual machine throws an OutOfMemoryError".
+ * combination with {@link SoftReference}, we are able to get an {@link OutOfMemoryError} error, which seems to break
+ * its JavaDoc contract: "All soft references to softly-reachable objects are guaranteed to have been cleared before the
+ * virtual machine throws an OutOfMemoryError".
  */
 public class GCLockerTooOftenAllocating {
 
