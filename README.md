@@ -29,6 +29,9 @@ Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
         at org.example.App.main(App.java:37)
 ```
 
+It's useful to set `-XX:+HeapDumpOnOutOfMemoryError`; upon examination, the dump will show that the majority of the heap
+is taken up by reclaimable soft references.
+
 ## References
 
 * https://shipilev.net/jvm/anatomy-quarks/9-jni-critical-gclocker/
