@@ -1,5 +1,6 @@
 package io.deephaven.example;
 
+import java.lang.ref.Reference;
 import java.lang.ref.SoftReference;
 import java.nio.ByteBuffer;
 import java.util.Random;
@@ -32,17 +33,19 @@ public class GCLockerTooOftenAllocating {
             compressThread.start();
         }
 
-        // Each soft-ref will be 1 / 1024 of heap
-        final int softRefPart = 1024;
-        final int byteBufferSize = (int)(Runtime.getRuntime().maxMemory() / softRefPart);
+        // Each buffer will be 1 / 1024 of heap
+        final int bufferPart = 1024;
+        final int bufferSize = (int)(Runtime.getRuntime().maxMemory() / bufferPart);
         // We just need to make sure the array can accommodate at least the total heap size
-        final int softReferenceArraySize = softRefPart * 2;
-        final SoftReference<ByteBuffer>[] references = new SoftReference[softReferenceArraySize];
-        long refCount = 0;
+        final int arraySize = bufferPart * 2;
+        final Reference<ByteBuffer>[] references = new Reference[arraySize];
+        long count = 0;
         while (isAlive(compressThreads)) {
-            references[(int)(refCount++ % softReferenceArraySize)] = new SoftReference<>(ByteBuffer.allocate(byteBufferSize));
+            references[(int)(count++ % arraySize)] = new SoftReference<>(ByteBuffer.allocate(bufferSize));
+            // WeakReference does not trigger the issue
+            //references[(int)(count++ % arraySize)] = new WeakReference<>(ByteBuffer.allocate(bufferSize));
         }
-        System.out.printf("Completed, refCount=%d%n", refCount);
+        System.out.printf("Completed, count=%d%n", count);
     }
 
     private static boolean isAlive(Thread[] threads) {

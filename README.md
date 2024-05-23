@@ -33,7 +33,7 @@ Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
 ## Notes
 
 It's useful to set `-XX:+HeapDumpOnOutOfMemoryError`; upon examination, the dump will show that the majority of the heap
-is taken up by reclaimable soft references.
+is taken up by reclaimable `byte[]` objects (via `Reference[]` -> `SoftReference` -> `HeapByteBuffer` -> `byte[]`).
 
 The `-XX:GCLockerRetryAllocationCount` _may_ be set to a high number to workaround this issue, although that it isn't a
 very satisfying solution.
