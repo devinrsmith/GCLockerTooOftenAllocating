@@ -1,0 +1,2 @@
+rootProject.name = 'java-gclocker-softref-oom'
+include('app')

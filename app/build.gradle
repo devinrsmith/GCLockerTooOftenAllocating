@@ -1,0 +1,18 @@
+plugins {
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+}
+
+application {
+    mainClass = 'io.deephaven.example.GCLockerTooOftenAllocating'
+}
+
+compileJava {
+    options.release = 8
+}
