@@ -23,11 +23,11 @@ JAVA_HOME=... APP_OPTS="-Xmx4g" ./app/build/install/app/bin/app
 Various combinations of JVMs and GC collectors will produce (or seem to be immune to) the error 
 
 ```
-[1.821s][warning][gc,alloc] main: Retried waiting for GCLocker too often allocating 524290 words
+[1.242s][warning][gc,alloc] main: Retried waiting for GCLocker too often allocating 524290 words
 Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
-        at java.base/java.nio.HeapByteBuffer.<init>(HeapByteBuffer.java:64)
-        at java.base/java.nio.ByteBuffer.allocate(ByteBuffer.java:363)
-        at org.example.App.main(App.java:37)
+        at java.base/java.nio.HeapByteBuffer.<init>(HeapByteBuffer.java:71)
+        at java.base/java.nio.ByteBuffer.allocate(ByteBuffer.java:391)
+        at io.deephaven.example.GCLockerTooOftenAllocating.main(GCLockerTooOftenAllocating.java:45)
 ```
 
 ## Notes
