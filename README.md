@@ -45,3 +45,5 @@ Probably because it had already been noticed and fixed in [JDK-8289838 ZGC: OOM 
 
 * https://shipilev.net/jvm/anatomy-quarks/9-jni-critical-gclocker/
 * https://tech.clevertap.com/demystifying-g1-gc-gclocker-jni-critical-and-fake-oom-exceptions/
+* https://github.com/adoptium/adoptium-support/issues/1096
+* https://mail.openjdk.org/pipermail/hotspot-gc-use/2024-May/002938.html
